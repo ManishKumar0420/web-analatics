@@ -285,7 +285,7 @@ Generated events are automatically stored in MongoDB and become visible in the d
 Dashboard route:
 
 ```bash
-http://localhost:3000/dashboard
+http://localhost:3000
 ```
 
 Features:
