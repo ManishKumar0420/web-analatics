@@ -415,7 +415,9 @@ function HeatmapView() {
     if (t < 0.66) return `rgba(251,191,36,${(0.5 + t * 0.5).toFixed(2)})`;
     return `rgba(239,68,68,${(0.6 + t * 0.4).toFixed(2)})`;
   }
-
+const reversedPoints = heatmap?.points 
+  ? [...heatmap.points].reverse() 
+  : [];
   return (
     <div>
       {/* Page selector row */}
@@ -517,36 +519,7 @@ function HeatmapView() {
               </span>
             </div>
           ) : (
-            // heatmap?.points.map((pt, i) => {
-            //   const size = 8 + (pt.count / maxCount) * 18;
-            //   const color = dotColor(pt.count);
-            //   return (
-            //     <div
-            //       key={i}
-            //       className="absolute cursor-crosshair rounded-full transition-all duration-200"
-            //       style={{
-            //         left: `${pt.x}%`,
-            //         top: `${pt.y}%`,
-            //         width: size,
-            //         height: size,
-            //         background: color,
-            //         boxShadow: `0 0 ${size * 2}px ${color}`,
-            //         transform: "translate(-50%, -50%)",
-            //       }}
-            //       onMouseEnter={(e) =>
-            //         setTooltip({
-            //           x: pt.x,
-            //           y: pt.y,
-            //           count: pt.count,
-            //           px: e.clientX,
-            //           py: e.clientY,
-            //         })
-            //       }
-            //       onMouseLeave={() => setTooltip(null)}
-            //     />
-            //   );
-            // })
-            heatmap?.points.map((pt, i) => {
+            reversedPoints.map((pt, i) => {
               const normalizedX =
                 (pt.x / window.innerWidth) * containerSize.width;
 
