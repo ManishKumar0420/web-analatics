@@ -1,8 +1,10 @@
-# SessionLens — Web Analytics & Heatmap Platform
+# SessionLens
 
-A lightweight full-stack analytics platform built with Next.js, MongoDB, and React Query that tracks user behavior, session journeys, and click heatmaps in real time.
+SessionLens is a lightweight full-stack web analytics and heatmap platform built with Next.js, MongoDB, and TypeScript.
 
-This project was built as part of the Full Stack Engineer assignment for CausalFunnel.
+The application tracks user interactions such as page views and clicks, stores session analytics in MongoDB, and visualizes user behavior through interactive dashboards and click heatmaps.
+
+This project was developed as part of the Full Stack Engineer assignment for CausalFunnel.
 
 ---
 
@@ -10,40 +12,47 @@ This project was built as part of the Full Stack Engineer assignment for CausalF
 
 ## Event Tracking
 
-* Tracks:
+Tracks:
 
-  * Page Views
-  * Click Events
-* Stores:
+- Page Views
+- Click Events
 
-  * Session ID
-  * Page URL
-  * Timestamp
-  * Click Coordinates
-  * Viewport Dimensions
+Captured metadata:
+
+- Session ID
+- Page URL
+- Timestamp
+- Click Coordinates
+- Viewport Dimensions
+
+---
 
 ## Session Analytics
 
-* Session listing dashboard
-* Total events per session
-* Session duration
-* Page visit count
-* Ordered user journey timeline
+- Session listing dashboard
+- Session duration tracking
+- Event counts per session
+- Ordered user journey timeline
+- Page visit analysis
+
+---
 
 ## Heatmap Visualization
 
-* Dynamic click heatmaps
-* Intensity-based rendering
-* Responsive coordinate normalization
-* Multi-page analytics support
+- Dynamic click heatmaps
+- Intensity-based rendering
+- Responsive coordinate normalization
+- Multi-page support
+
+---
 
 ## Dashboard
 
-* Modern analytics UI
-* Real-time data fetching
-* React Query integration
-* Optimized loading states
-* Responsive layout
+- Modern analytics UI
+- Real-time data fetching
+- Optimized loading states
+- Responsive layout
+- Interactive session exploration
 
 ---
 
@@ -52,14 +61,101 @@ This project was built as part of the Full Stack Engineer assignment for CausalF
 | Layer            | Technology             |
 | ---------------- | ---------------------- |
 | Frontend         | Next.js 15             |
-| Backend          | Next.js Route Handlers |
-| Database         | MongoDB                |
+| Backend APIs     | Next.js Route Handlers |
+| Database         | MongoDB Atlas          |
 | ODM              | Mongoose               |
-| State Management | React Query            |
+| Language         | TypeScript             |
 | Styling          | TailwindCSS            |
 | UI Components    | shadcn/ui              |
-| Language         | TypeScript             |
+| State Management | React Query            |
 | Analytics SDK    | Custom Tracker Script  |
+
+---
+
+# Why Next.js For Both Frontend & Backend?
+
+This project intentionally uses Next.js for both the frontend and backend APIs instead of introducing a separate Express.js server.
+
+## Reasons
+
+### 1. Unified Full-Stack Architecture
+
+Using a single framework reduces:
+
+- project complexity
+- deployment overhead
+- duplicated configuration
+- separate server management
+
+Frontend pages and backend APIs live inside the same application.
+
+---
+
+### 2. Faster Development
+
+Next.js Route Handlers provide:
+
+- built-in API support
+- native TypeScript integration
+- filesystem-based routing
+- simplified request handling
+
+This significantly speeds up development for analytics-style applications.
+
+---
+
+### 3. Simpler Deployment
+
+The application can be deployed as a single service on platforms like:
+
+- Vercel
+- Railway
+- Render
+
+Without needing:
+
+- separate frontend deployment
+- separate backend server
+- reverse proxy configuration
+
+---
+
+### 4. Better Developer Experience
+
+Using only Next.js avoids maintaining:
+
+- separate Express middleware
+- CORS configuration between services
+- independent build pipelines
+- multiple package ecosystems
+
+---
+
+## Why Not Express.js?
+
+Express.js is extremely powerful and flexible, but for this project it would introduce additional complexity without significant architectural benefit.
+
+Using Express would require:
+
+- separate backend server
+- additional deployment setup
+- separate routing layer
+- API/frontend integration management
+
+For a medium-sized analytics platform, Next.js APIs are sufficient and simpler to maintain.
+
+---
+
+## Trade-off
+
+Using Next.js APIs instead of Express does reduce flexibility for:
+
+- highly customized middleware pipelines
+- websocket-heavy architectures
+- large-scale microservice systems
+- advanced backend-only scaling patterns
+
+However, for this assignment and project scope, the simplified architecture provides better development speed and maintainability.
 
 ---
 
@@ -99,7 +195,7 @@ This project was built as part of the Full Stack Engineer assignment for CausalF
 
 ---
 
-# Setup Steps
+# Setup
 
 ## 1. Clone Repository
 
@@ -134,17 +230,17 @@ pnpm install
 
 ## 3. Configure Environment Variables
 
-Create a `.env.local` file in the project root.
+Create:
 
-```env
-MONGODB_URI="mongodb://127.0.0.1:27017/sessionlens"
-NEXT_PUBLIC_BASE_URL="http://localhost:3000"
+```bash
+.env.local
 ```
 
-For MongoDB Atlas:
+Example:
 
 ```env
-MONGODB_URI="mongodb+srv://<username>:<password>@cluster.mongodb.net/sessionlens"
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/sessionlens
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
 ```
 
 ---
@@ -155,7 +251,7 @@ MONGODB_URI="mongodb+srv://<username>:<password>@cluster.mongodb.net/sessionlens
 npm run dev
 ```
 
-Application:
+Open:
 
 ```bash
 http://localhost:3000
@@ -163,36 +259,41 @@ http://localhost:3000
 
 ---
 
-## 5. Generate Analytics Events
+# Test Page
 
-Open:
+The application includes a dedicated test route:
 
 ```bash
 http://localhost:3000/test
 ```
 
-Interact with the page:
+This page is used to simulate user interactions and generate analytics events.
 
-* Click buttons
-* Navigate pages
-* Trigger events
+You can:
 
-Analytics events will automatically be stored in MongoDB.
+- click buttons
+- navigate pages
+- trigger events
+- test heatmap tracking
+
+Generated events are automatically stored in MongoDB and become visible in the dashboard.
 
 ---
 
-## 6. Open Dashboard
+# Dashboard
+
+Dashboard route:
 
 ```bash
 http://localhost:3000/dashboard
 ```
 
-Dashboard includes:
+Features:
 
-* Sessions analytics
-* User journey timeline
-* Click heatmaps
-* Event statistics
+- session analytics
+- user journey visualization
+- heatmaps
+- event insights
 
 ---
 
@@ -205,7 +306,7 @@ scout.js Tracker
       ↓
 Next.js API Routes
       ↓
-MongoDB
+MongoDB Atlas
       ↓
 Dashboard Visualization
 ```
@@ -216,7 +317,7 @@ Dashboard Visualization
 
 ## POST `/api/analytics`
 
-Receives analytics events.
+Stores analytics events.
 
 ### Example Payload
 
@@ -237,19 +338,19 @@ Receives analytics events.
 
 ## GET `/api/sessions`
 
-Returns all tracked sessions.
+Returns tracked sessions.
 
 ---
 
 ## GET `/api/sessions/[id]`
 
-Returns ordered events for a session.
+Returns ordered session events.
 
 ---
 
 ## GET `/api/heatmap?page=/test`
 
-Returns heatmap click coordinates for a page.
+Returns heatmap coordinates for a page.
 
 ---
 
@@ -277,74 +378,101 @@ Returns heatmap click coordinates for a page.
 
 The tracker stores:
 
-* Raw click coordinates
-* Viewport dimensions
+- raw click coordinates
+- viewport dimensions
 
-The dashboard dynamically normalizes coordinates relative to the rendered browser replica container, ensuring:
+Coordinates are normalized dynamically relative to the rendered browser preview container to ensure:
 
-* Responsive heatmaps
-* Mobile compatibility
-* Cross-device rendering consistency
+- responsive heatmaps
+- cross-device consistency
+- accurate rendering across screen sizes
 
 ---
 
 # Performance Optimizations
 
-* React Query caching
-* MongoDB indexing
-* Dynamic heatmap rendering
-* Prefetched session events
-* Optimized loading states
-* Responsive coordinate scaling
+- React Query caching
+- MongoDB indexing
+- Dynamic heatmap rendering
+- Optimized loading states
+- Responsive coordinate scaling
+- Cached MongoDB connection pooling
 
 ---
 
-# Assumptions & Trade-offs
+# Assumptions
 
-## Assumptions
-
-* Users are identified using browser-based session IDs
-* Analytics tracking is client-side only
-* Heatmap coordinates are normalized relative to viewport size
-* MongoDB is available and writable
-* Tracker script runs in modern browsers
+- Users are identified through browser-generated session IDs
+- Analytics tracking is client-side only
+- MongoDB is available and writable
+- Modern browsers are used
+- Heatmap rendering is viewport-relative
 
 ---
 
-## Trade-offs
+# Trade-offs
 
-### 1. No Authentication Layer
+## 1. No Authentication Layer
 
-The dashboard is publicly accessible for simplicity and assignment scope.
+The dashboard is publicly accessible to keep the project focused on analytics functionality.
 
-### 2. No Event Queue/Batching
+---
 
-Events are sent directly to the backend instead of using a queue system like Kafka or RabbitMQ.
+## 2. No Queue/Event Streaming System
 
-### 3. Simplified Heatmap Engine
+Events are written directly to MongoDB instead of using systems like:
 
-Heatmaps are rendered using positioned DOM elements instead of canvas/WebGL rendering.
+- Kafka
+- RabbitMQ
+- Redis Streams
 
-### 4. No Real Session Replay
+This simplifies architecture but limits scalability for extremely high event throughput.
 
-Only event timelines are implemented instead of full DOM recording/replay systems.
+---
 
-### 5. Basic Session Tracking
+## 3. Simplified Heatmap Rendering
 
-Session management uses browser storage instead of advanced fingerprinting/authenticated user tracking.
+Heatmaps are rendered using positioned DOM elements instead of:
 
-### 6. Limited Analytics Types
+- Canvas
+- WebGL
 
-The platform currently tracks:
+This improves implementation simplicity but may become less efficient with massive datasets.
 
-* Page views
-* Click events
+---
 
-Additional analytics such as scroll depth, rage clicks, or conversions are not implemented.
+## 4. No Full Session Replay
 
-### 7. Single-Service Architecture
+The platform tracks event timelines only and does not implement DOM recording/replay systems similar to:
 
-Frontend and backend are implemented within a single Next.js application for faster development and deployment simplicity.
+- Hotjar
+- FullStory
+
+---
+
+## 5. Basic Session Tracking
+
+Session management relies on browser storage rather than:
+
+- authenticated users
+- advanced fingerprinting
+- cross-device identity systems
+
+---
+
+## 6. Monolithic Architecture
+
+Frontend and backend are combined into a single Next.js application.
+
+Advantages:
+
+- simpler deployment
+- faster development
+- easier maintenance
+
+Trade-off:
+
+- less independently scalable than dedicated microservices
 
 ---
 
@@ -352,10 +480,10 @@ Frontend and backend are implemented within a single Next.js application for fas
 
 The application can be deployed on:
 
-* Vercel
-* Railway
-* Render
-* Fly.io
+- Vercel
+- Railway
+- Render
+- Fly.io
 
 Set the same environment variables in the deployment platform.
 
@@ -363,22 +491,14 @@ Set the same environment variables in the deployment platform.
 
 # Troubleshooting
 
-## MongoDB Connection Error
+## MongoDB Connection Issues
 
 Check:
 
-* `MONGODB_URI`
-* MongoDB service status
-* Atlas IP allowlist
-
----
-
-## Heatmap Points Incorrect
-
-Ensure:
-
-* Viewport dimensions are stored
-* Coordinate normalization is enabled
+- `MONGODB_URI`
+- Atlas IP allowlist
+- database credentials
+- internet/DNS configuration
 
 ---
 
@@ -386,10 +506,35 @@ Ensure:
 
 Check:
 
-* Browser network tab
-* API route logs
-* MongoDB connection
-* CORS configuration
+- browser network requests
+- API logs
+- MongoDB connection
+- tracker initialization
+
+---
+
+## Heatmap Rendering Issues
+
+Ensure:
+
+- viewport dimensions are stored
+- coordinate normalization is enabled
+
+---
+
+# Future Improvements
+
+Potential future enhancements:
+
+- authentication & RBAC
+- websocket-based live analytics
+- event batching
+- Redis caching
+- session replay
+- scroll tracking
+- rage click detection
+- conversion funnels
+- distributed event processing
 
 ---
 
