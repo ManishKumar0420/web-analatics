@@ -200,7 +200,7 @@ However, for this assignment and project scope, the simplified architecture prov
 ## 1. Clone Repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/ManishKumar0420/web-analatics.git
 cd sessionlens
 ```
 
