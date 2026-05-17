@@ -257,6 +257,11 @@ Open:
 http://localhost:3000
 ```
 
+Or just check it on 
+```bash
+https://web-analatics.vercel.app/
+```
+
 ---
 
 # Test Page
